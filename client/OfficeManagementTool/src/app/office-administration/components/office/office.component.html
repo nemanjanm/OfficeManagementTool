@@ -1,0 +1,45 @@
+<p-confirmDialog>
+  (officesChanged)="updateOffices($event)"
+</p-confirmDialog>
+<div [ngBusy]="officeLoadingSubscription"></div>
+<br>
+<div class="d-flex justify-content-center align-items-center">
+<div class="content">
+<h2>{{ "Offices.OfficeAdmin" | translate }}</h2>
+<br>
+<div class="search-container">
+  <input pInputText type="text" [(ngModel)]="searchTerm" (ngModelChange)="loadOffices()" placeholder="{{'Common.Search' | translate}}...">
+  <button pButton (click)="addOffice()" class="btn btn-primary"><i class="pi pi-plus">&nbsp;</i>{{ "Offices.AddOffice" | translate }}</button>
+</div>
+
+<br><br>
+<p-table 
+  [value]="offices"  
+  [customSort]="true"
+  (onLazyLoad)="loadOffices($event)"
+  [lazy]="true">
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="name">{{ "Offices.Name" | translate }}<p-sortIcon field="name"></p-sortIcon></th>
+      <th pSortableColumn="date">{{ "Offices.CreationDate" | translate }}<p-sortIcon field="date"></p-sortIcon></th>
+      <th style="text-align: center;">{{'Common.Options' | translate}}</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-office>
+    <tr>
+      <td>{{ office.name }}</td>
+      <td style="padding-left: 20px; padding-right: 20px;">{{ office.dateCreated | date :'dd/MM/yyyy'}}</td>
+      <td>
+        <div style="display: flex; justify-content: center; align-items: center;">
+          <button pButton (click)="updateOffice(office)" class="btn btn-secondary"><i class="pi pi-pencil">&nbsp;</i>{{'Common.Update' | translate}}</button>
+          <button pButton (click)="deleteOffice(office)" class="btn btn-danger" [style]="{'background':'rgb(233, 44, 44)', 'border':'rgb(233, 44, 44)'}">
+            <i class="pi pi-trash">&nbsp;</i>{{'Common.Delete' | translate}}
+          </button>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+</div>
+</div>
+<p-toast position="bottom-right"></p-toast>

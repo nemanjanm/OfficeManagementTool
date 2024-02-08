@@ -1,0 +1,83 @@
+<p-toast position="bottom-right"></p-toast>
+<p-confirmDialog>
+  </p-confirmDialog>
+<div [ngBusy]="reportsLoadingSubscription"></div>
+<button class="m-2 text-center" pButton (click)="openReportForm()">{{'Common.Add' | translate}}</button>
+<div class="w-90 m-3">
+    <p-table
+    [value]="reports"
+    [lazy]="true"
+    (onLazyLoad)="loadReports($event)"
+    dataKey="id"
+    [tableStyle]="{ 'min-width': '75rem' }"
+    [paginator]="true"
+    [rows]="this.rows"
+    [totalRecords]="totalRecords"
+    [loading]="loading"
+    [resizableColumns]="true"
+    [autoLayout]="true"
+    >
+        <ng-template pTemplate="header">
+            <tr>
+                <th class="text-center" pSortableColumn="description" >{{'Reports.Description' | translate}} <p-sortIcon field="report.description"></p-sortIcon></th>
+                <th class="text-center" pSortableColumn="state" >{{'Reports.State' | translate}} <p-sortIcon field="report.stateName"></p-sortIcon></th>
+                <th class="text-center" pSortableColumn="officeName">{{'Common.Office' | translate}} <p-sortIcon field="report.officeName"></p-sortIcon></th>
+                <th *ngIf="userId == null" class="text-center" pSortableColumn="user" >{{'Reports.User' | translate}} <p-sortIcon field="report.userFullName"></p-sortIcon></th>
+                <th class="text-center" pSortableColumn="categoryName">{{'Reports.Category' | translate}} <p-sortIcon field="report.categoryName"></p-sortIcon></th>
+                <th class="text-center" pSortableColumn="date">{{'Reports.DateCreated' | translate}} <p-sortIcon field="report.dateCreated"></p-sortIcon></th>
+                <th class="text-center" >{{'Reports.Actions' | translate}} </th>
+            </tr>
+            <tr>
+                <th class="text-center">
+                    <input pInputText [(ngModel)]="descriptionSearch"  type="text" placeholder="{{'Common.Search' | translate}}" (keyup.enter)="loadReports()" class="w-full">
+                </th>
+                <th class="text-center">
+                    <p-dropdown appendTo="body" [showClear]="true" [options]="reportStateConstants" [(ngModel)]="selectedState" optionValue="value" optionLabel="label" (onChange)="loadReports()" placeholder="{{'Reports.StateSelect' | translate}}">
+                        <ng-template let-option pTemplate="item">
+                            {{ 'Reports.' + option.label | translate }}
+                          </ng-template>
+                          <ng-template let-option pTemplate="selectedItem">
+                            {{ 'Reports.' + option.label | translate }}
+                          </ng-template>
+                    </p-dropdown>
+                </th>
+                <th class="text-center">
+                    <input pInputText [(ngModel)]="officeSearch" type="text" placeholder="{{'Common.Search' | translate}}" (keyup.enter)="loadReports()" class="w-full">
+                </th>
+                <th *ngIf="userId == null" class="text-center">
+                    <input pInputText [(ngModel)]="nameSearch" type="text" (keyup.enter)="loadReports()" placeholder="{{'Common.Search' | translate}}" class="w-full">
+                </th>
+                <th class="text-center">
+                    <p-dropdown appendTo="body" [showClear]="true" [options]="reportCategoryConstants" [(ngModel)]="selectedCategory" optionLabel="label" (onChange)="loadReports()" placeholder="{{'Reports.CategorySelect' | translate}}">
+                        <ng-template let-option pTemplate="selectedItem">
+                            {{ 'Reports.' + option.label | translate }}
+                          </ng-template>
+                        <ng-template let-option pTemplate="item">
+                            {{ 'Reports.' + option.label | translate }}
+                          </ng-template>
+                    </p-dropdown>
+                </th>
+                <th style="width: 4rem">
+                </th>
+                <th style="width: 4rem">
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-report>
+            <tr>
+                <td class="text-wrap">{{ report.description.length > 30? report.description.substring(0,30) + "..."  : report.description }}</td>
+                <td class="text-center"><p-tag severity="{{getSeverity(report.state)}}" value="{{ 'Reports.' + reportStateConstants[report.state].label | translate }}"></p-tag></td>
+                <td class="text-center">{{ report.officeName }}</td>
+                <td  *ngIf="userId == null" class="text-center">{{ report.userFullName }}</td>
+                <td class="text-center">{{ "Reports." + reportCategoryConstants[report.category].label | translate }}</td>
+                <td class="text-center">{{ report.dateCreated | date: 	"dd/MM/yyyy"}}</td>
+                <td>
+                    <span>
+                        <button class=" m-1" (click)="openReport(report)" pButton>{{"Reports.Open" | translate}}</button>
+                    </span>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+    
+</div>

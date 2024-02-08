@@ -1,0 +1,24 @@
+@import "src/_variables.scss";
+
+:host ::ng-deep {
+  .p-datatable {
+    background-color: var(--white) !important;
+    color: var(--black) !important;
+    border: 2px solid var(--primary-color) !important;
+    width: 500px;
+    max-width: 100%;
+  }
+  .p-button p-button-text {
+    color: var(--white) !important;
+  }
+  .search-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  .content {
+    max-width: 500px;
+  }
+  .btn {
+    background-color: var(--primary-color);
+  }
+}

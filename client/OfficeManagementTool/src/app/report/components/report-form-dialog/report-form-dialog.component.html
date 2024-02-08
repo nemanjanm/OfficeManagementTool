@@ -1,0 +1,29 @@
+<div class="content">
+<div class="justify-content-center flex-container shadow-2 border-round w-full lg:w-6">
+    <form [formGroup]="reportForm" (ngSubmit)="onSubmit(reportForm)">
+        <div class="form-row my-2">
+            <span>{{"Reports.Category" | translate}} </span>
+            <p-dropdown [style]="{'width':'100%'}" formControlName="category" [options]="categories" placeholder="{{'Reports.Category' | translate}}" optionLabel="label" optionValue="value">
+                <ng-template let-option pTemplate="item">
+                    {{ 'Reports.' + option.label | translate }}
+                  </ng-template>
+                  <ng-template let-option pTemplate="selectedItem">
+                    {{ 'Reports.' + option.label | translate }}
+                  </ng-template>
+            </p-dropdown>
+        </div>
+        <div class="form-row  my-2">
+            <span>{{"Common.Office" | translate}} </span>
+            <p-dropdown [style]="{'width':'100%'}" formControlName="office" [options]="offices" optionLabel="name"></p-dropdown>
+        </div>
+        <span>{{"Reports.Description" | translate}} </span>
+        <textarea class="w-100" rows="10" pInputTextarea formControlName="description"></textarea>
+        <div *ngIf="reportForm.get('description')!.invalid && (reportForm.get('description')!.dirty || reportForm.get('description')!.touched)"  class="form-row w-100 text-center ">
+            <span class="font-weight-bold err">{{"Reports.DescriptionEmptyErr" | translate}}</span>
+        </div>
+        <div class="form-row ">
+            <button [disabled]="reportForm.invalid" type="submit" class="w-100 justify-content-center my-2" pButton> {{"Common.Add" | translate}}</button>
+        </div>
+    </form>
+</div>
+</div>

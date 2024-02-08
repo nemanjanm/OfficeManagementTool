@@ -1,0 +1,69 @@
+<div [ngBusy]="itemLoadingSubscription"></div>
+<p-toast position="bottom-right"></p-toast>
+<br>
+<div class="align-items-center w-100">
+    <div class="content">
+    <h2 *ngIf="tableType == itemType">{{"Common.Snacks" | translate}}</h2>
+    <h2 *ngIf="tableType != itemType">{{"Cart."+cartTypes[openedCart].label | translate}}</h2>
+    <br>
+    <div class="search-container p-3">
+      <div class="row">
+      <input *ngIf="tableType == itemType" class="col" pInputText type="text" [(ngModel)]="searchTerm" (ngModelChange)="loadItems(lastLazyLoadEvent)" placeholder="{{'Items.SearchItems' | translate}}"> &nbsp;
+      <p-dropdown *ngIf="tableType == itemType" class="col" appendTo="body" [(ngModel)]="categoryName" placeholder="{{'Items.CategoryName' | translate}}" (onChange)="loadItemsCategoriesByType($event)" optionValue="id"  [options]="categories" optionLabel="name"></p-dropdown>
+      <p-selectButton *ngIf="tableType != itemType" class="col" [options]="stateOptions" (onChange)="loadOrderRequests()" [(ngModel)]="openedCart" optionLabel="label" optionValue="value">
+        <ng-template let-option pTemplate="selectedItem">
+          {{ 'Cart.' + option.label | translate }}
+        </ng-template>
+      <ng-template let-option pTemplate="item">
+          {{ 'Cart.' + option.label | translate }}
+        </ng-template>
+      </p-selectButton>
+      <button *ngIf="tableType != itemType && userHR()" class="col-4 text-center" pButton (click)="acceptOrder()">{{'Cart.AcceptOrder' | translate}}</button>
+    </div>
+    </div>
+    <p-table 
+      [value]="tableType == itemType? items : orderRequests"
+      [customSort]="true"
+      (onLazyLoad)="loadItems($event)"
+      [lazy]="true"
+      [totalRecords]="totalRecords"
+      [rows]="rows"
+      [paginator]="true" 
+      [resizableColumns]="true"
+      [autoLayout]="true"
+      styleClass="mt-2">
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="name">{{'Items.Name' |translate}}<p-sortIcon *ngIf="tableType == itemType" field="name"></p-sortIcon></th>
+          <th *ngIf="tableType == itemType" pSortableColumn="category_name">{{'Items.CategoryName' | translate}}<p-sortIcon field="category_name"></p-sortIcon></th>
+          <th *ngIf="tableType != itemType" class="buttons" >{{'Cart.Amount' | translate}}</th>
+          <th class="buttons" *ngIf="openedCart != officeCartType"></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
+        <tr>
+          <td *ngIf="tableType == itemType">{{ item.name }}</td>
+          <td *ngIf="tableType != itemType">{{ item.itemName }}</td>
+          <td *ngIf="tableType == itemType">{{ item.categoryName}}</td>
+          <td *ngIf="tableType != itemType">{{ item.amount }}</td>
+          <td class="buttons"  *ngIf="openUpdate != rowIndex && openedCart != officeCartType" >
+            <button pButton  *ngIf="tableType == itemType" (click)="openUpdateFields(rowIndex)">{{'Common.Add' | translate}}</button>
+            <button pButton *ngIf="tableType != itemType" (click)="openUpdateFields(rowIndex)"> {{'Common.Update' | translate}}</button>
+            &nbsp;
+            <button pButton  [style]="{'background':'rgb(233, 44, 44)', 'border':'rgb(233, 44, 44)'}" *ngIf="tableType != itemType" (click)="delete(rowIndex)"> {{'Common.Delete' | translate}}</button>
+          </td>
+          <td class="buttons"  *ngIf="openUpdate == rowIndex && tableType == itemType" >
+            <p-inputNumber class="p-inputnumber w-20" [(ngModel)]="amount"></p-inputNumber>
+            <button pButton class=" mx-1"(click)="addToCart(item.id,rowIndex)"><i class="pi pi-check"></i></button>
+            <button pButton (click)="closeUpdate(rowIndex)" [style]="{'background':'rgb(233, 44, 44)', 'border':'rgb(233, 44, 44)'}"><i class="pi pi-times"></i></button>
+          </td>
+          <td class="buttons"  *ngIf="openUpdate == rowIndex && tableType != itemType" >
+            <p-inputNumber class="p-inputnumber  w-20"  [(ngModel)]="amount"></p-inputNumber>
+            <button pButton class=" mx-1" (click)="update(rowIndex)"><i class="pi pi-check"></i></button>
+            <button pButton (click)="closeUpdate(rowIndex)" [style]="{'background':'rgb(233, 44, 44)', 'border':'rgb(233, 44, 44)'}"><i class="pi pi-times"></i></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    </div>
+    </div>

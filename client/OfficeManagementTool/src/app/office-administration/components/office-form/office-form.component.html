@@ -1,0 +1,12 @@
+<form [formGroup]="officeForm" (ngSubmit)="onSaveOffice()">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input pInputText type="text" id="name" class="form-control" formControlName="name">
+    <div *ngIf="officeForm.controls['name'].invalid && officeForm.controls['name'].touched" class="invalid-feedback">Name is required.</div>
+  </div>
+<br>
+  <div class="form-group">
+    <button type="submit" class="btn btn-success" [disabled]="officeForm.invalid">{{ isUpdate ? 'Update' : 'Add' }}</button>&nbsp;
+    <button type="button" class="btn btn-success" (click)="onCancelOfficeForm()">Cancel</button>
+  </div>
+</form>

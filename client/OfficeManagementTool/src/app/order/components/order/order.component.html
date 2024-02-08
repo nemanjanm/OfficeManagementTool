@@ -1,0 +1,29 @@
+<div [ngBusy]="orderLoadingSubscription"></div>
+<div class="d-flex justify-content-center align-items-center">
+    <div class="content">
+    <h2>{{ "Order.Orders" | translate }}</h2>
+    <br>
+    <p-table 
+      [value]="orderResponse"
+      [lazy]="true"
+      styleClass="mt-2">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>{{"Order.DateCreated" | translate }}</th>
+          <th>{{"Order.State" | translate }}</th>
+          <th class="buttons" ></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-order>
+        <tr>
+          <td>{{ order.dateCreated | date }}</td>
+          <td>{{ states[order.state].label | translate}}</td>
+          <td class="buttons">
+            <button pButton (click)="updateOrder(order)" class="btn btn-secondary"><i class="pi pi-user-edit">&nbsp;</i>{{ "Order.ChangeStatus" | translate}}</button>
+            <button pButton (click)="showItems(order)" class="btn btn-secondary"><i class="pi pi-server">&nbsp;</i>{{"Order.ShowItems" | translate}}</button>
+        </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    </div>
+</div>

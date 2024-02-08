@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    {{'Reports.Owner' | translate}}: <span class="fw-bold">{{report.userFullName}}</span><br><br>
+    {{'Reports.Category' | translate}}: <span  class=" fw-bold">{{ 'Reports.' + reportCategoryConstants[report.category].label | translate }}</span><br><br>
+    {{'Reports.State' | translate}}: <span *ngIf="!userHR()" class=" fw-bold">{{ 'Reports.' + reportStateConstants[report.state].label | translate }}</span>
+        <span *ngIf="userHR()">
+            <p-dropdown styleClass="dropdown" appendTo="body" class="p-inputtext-sm" [options]="reportStateConstants" [(ngModel)]="selectedState" optionLabel="label">    
+                <ng-template let-option pTemplate="item">
+                    {{ 'Reports.' + option.label | translate }}
+                  </ng-template>
+                  <ng-template let-option pTemplate="selectedItem">
+                    {{ 'Reports.' + option.label | translate }}
+                  </ng-template>
+            </p-dropdown>   
+        </span><br>
+    <br>{{'Reports.Description' | translate}}: <br><br>
+    <p-card class="w-90 text-justify text-wrap text-break">
+        {{report.description}}
+    </p-card>
+    <div class="d-flex justify-content-center h-max-content">
+        <button *ngIf="userHR()" pButton (click)="save()" class="p-button-sm text-center m-5 float-center">{{'Common.Confirm' | translate}}</button>    
+    </div>   
+</div>

@@ -1,0 +1,79 @@
+<form [formGroup]="editUserForm" (ngSubmit)="onSubmit()" style="margin-top: 3%; margin-bottom: 3%;">
+    <div>
+        <input pInputText type="text" formControlName="id" hidden="true" [(ngModel)]="id">
+    </div>
+  
+    <div class="wrapper">
+        <div class="label-holder">
+            <label for="lastName">{{ "User.LastName" | translate }}</label>
+        </div>
+    </div>
+    <div class="input-field">
+        <input pInputText type="text" id="lastName" class="form-control" formControlName="lastName" placeholder="{{ 'User.LastName' | translate }}">
+    </div>
+    <div class="form-group">
+      <div class="feedback">
+        <div *ngIf="editUserForm.controls['lastName'].dirty && editUserForm.hasError('required','lastName')">{{ "User.LastNameRequired" | translate }}</div>
+      </div>
+    </div>
+
+    <div class="wrapper">
+        <div class="label-holder">
+            <label for="firstName">{{ "User.FirstName" | translate }}</label>
+        </div>
+    </div>
+    <div class="input-field">
+      <input pInputText type="text" id="firstName" class="form-control" formControlName="firstName" placeholder="{{ 'User.FirstName' | translate }}">
+    </div>
+    <div class="form-group">
+      <div class="feedback">
+        <div *ngIf="editUserForm.controls['firstName'].dirty && editUserForm.hasError('required','firstName')">{{ "User.FirstNameRequired" | translate }}</div>
+      </div>
+    </div>
+  
+    <div class="wrapper">
+        <div class="label-holder">
+            <label for="email">E-mail</label>
+        </div>
+    </div>
+    <div class="input-field">
+        <input pInputText type="email" id="email" class="form-control" formControlName="email" placeholder="E-mail">
+    </div>
+    <div class="form-group">
+      <div class="feedback">
+        <div *ngIf="editUserForm.controls['email'].dirty && editUserForm.hasError('required','email')">{{ "User.EmailIsRequired" | translate }}</div>
+        <div *ngIf="editUserForm.controls['email'].dirty && editUserForm.hasError('pattern','email')">{{ "User.EmailInvalidFormat" | translate }}</div>
+        <div style="color: gray; font-size: 12px;">{{ "User.EmailFormat" | translate }} <b><i>{{ "User.EmailFormatExample" | translate }}</i></b></div>
+      </div>
+    </div>
+  
+    <div class="wrapper">
+        <div class="label-holder">
+            <label for="officeId">{{'Common.Office' | translate}}</label>
+        </div>
+    </div>
+    <div class="form-group">
+      <p-dropdown appendTo="body" formControlName="officeId" [options]="offices" [(ngModel)]="officeId" optionLabel="name" optionValue="id" [style]="{'width': '250px'}"></p-dropdown>
+    </div>
+
+    <div class="wrapper">
+        <div class="label-holder">
+            <label for="role">{{'User.Role' | translate}}</label>
+        </div>
+    </div>
+    <div class="form-group">
+      <p-dropdown appendTo="body" formControlName="role" [options]="roles" [(ngModel)]="role" [style]="{'width': '250px', 'padding': '0px'}">
+        <ng-template let-role pTemplate="selectedItem">
+          {{ 'Common.' + role.label | translate }}
+        </ng-template>
+        <ng-template let-role pTemplate="item">
+          {{ 'Common.' + role.label | translate }}
+        </ng-template>
+      </p-dropdown>
+    </div>
+  
+    <div class="form-group" style="margin-top: 15%;">
+      <button pButton type="submit" [disabled]="editUserForm.invalid">{{'Common.Confirm' | translate}}</button>&nbsp;&nbsp;&nbsp;
+      <button pButton type="button" (click)="closeEdit()">{{'Common.Cancel' | translate}}</button>
+    </div>
+</form>

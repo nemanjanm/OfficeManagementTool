@@ -1,0 +1,29 @@
+<div class="mt-5 justify-content-center flex-container p-2 shadow-2 border-round w-full lg:w-6">
+    <p-card>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
+            <h3 class="w-100 text-center">Login</h3>
+            <div class="form-row mx-5 my-2">
+                <input pInputText formControlName="email" type="email" class="p-inputtext-lg" placeholder="Email">
+            </div>
+            <div *ngIf="loginForm.get('email')!.invalid && (loginForm.get('email')!.dirty || loginForm.get('email')!.touched)" class="form-row w-100 text-center ">
+                <span class="font-weight-bold err" >Please provide a valid email address.</span>
+            </div>
+            <div class="form-row mx-5 my-2">
+                <p-password [feedback]="false" formControlName="password" placeholder="Password" class="p-inputtext-lg" [toggleMask]="true"></p-password>
+            </div>
+            <div *ngIf="loginForm.get('password')!.invalid && (loginForm.get('password')!.dirty || loginForm.get('password')!.touched)"  class="form-row w-100 text-center ">
+                <span class="font-weight-bold err"  >Password field is required.</span>
+            </div>
+            <div class="form-row w-100 text-center ">
+                <a routerLink="/forgot-password" >Forgot password?</a>
+            </div>
+            <div class="form-row w-100 text-center ">
+                <span class="font-weight-bold err" >{{error}}</span>
+            </div>
+            <div class="form-row ">
+                <button [disabled]="loginForm.invalid" type="submit" class="w-100 justify-content-center my-2" pButton> Submit</button>
+            </div>
+        </form>
+    </p-card>
+</div>
+

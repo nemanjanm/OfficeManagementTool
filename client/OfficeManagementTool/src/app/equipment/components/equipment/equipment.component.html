@@ -1,0 +1,96 @@
+<p-toast position="bottom-right"></p-toast>
+  <br>
+  <div class="d-flex justify-content-center align-items-center">
+  <div class="content">
+  <h2>{{ "Equipment.UnassignedEquipment" | translate }}</h2>
+  <br>
+  <div class="search-container">
+    <input pInputText type="text" [(ngModel)]="unassignedsearchTerm" (ngModelChange)="loadEquipment($event)" placeholder="{{ 'Equipment.SearchEquipment' | translate }}">
+    <button pButton (click)="addEquipment()" class="btn btn-success">{{ "Equipment.AddEquipment" | translate }}</button>
+  </div>
+  
+  <br><br>
+  <div class="relative">
+    <p-table 
+      [ngBusy]="{busy: unassignedEquipmentLoadingSubscription }"
+      [value]="unassignedEquipment"  
+      [customSort]="true"
+      (onLazyLoad)="loadEquipment($event)"
+      [lazy]="true"
+      dataKey="id"
+      [paginator]="true"
+      [rows]="unassignedrows"
+      [totalRecords]="unassignedTotalRecords"
+      [loading]="loading"
+      [showLoader]="false"
+      [globalFilterFields]="['search']"
+      >
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="itemCode">{{ "Equipment.ItemCode" | translate }}<p-sortIcon field="itemCode"></p-sortIcon></th>
+          <th pSortableColumn="itemName">{{ "Equipment.ItemName" | translate }}<p-sortIcon field="itemName"></p-sortIcon></th>
+          <th pSortableColumn="categoryName">{{ "Equipment.CategoryName" | translate }}<p-sortIcon field="categoryName"></p-sortIcon></th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-equipmentUnit>
+        <tr>
+          <td>{{equipmentUnit.itemCode}}</td>
+        <td>{{equipmentUnit.itemName}}</td>
+        <td>{{equipmentUnit.categoryName}}</td>
+        <td>
+          <button pButton [disabled]="selectedUser == null" (click)="assignItemToUser(equipmentUnit.id,selectedUser!.id)" class="btn btn-success">{{'Equipment.AssignEquipment' | translate}}</button>&nbsp;
+          <button pButton (click)="deleteEquipment(equipmentUnit)" class="btn btn-success">{{'Common.Delete' | translate}}</button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+ <br>
+ <h2>{{ "Equipment.AssignedEquipment" | translate }}</h2>
+  <br>
+  <div class="w-100">
+    <p-dropdown styleClass="w-90" [showClear]="true" [(ngModel)]="selectedUser"
+            (onChange)="getAssignedItemsForUser(selectedUser?selectedUser.id!:0,selectedUser)" class="form-control-p-dropdown"
+            [options]="users" [filter]="true" filterBy="displayLabel" optionLabel="displayLabel" appendTo="body"
+            placeholder="{{ 'Equipment.Users' | translate }}" (onClear)="onClearHandler()" ></p-dropdown>
+</div><br>
+  <div class="relative">
+  <p-table 
+      [ngBusy]="{busy: assignedEquipmentLoadingSubscription }"
+      [value]="assignedEquipment"  
+      [customSort]="true"
+      (onLazyLoad)="loadAssignedEquipment($event)"
+      [lazy]="true"
+      dataKey="id"
+      [paginator]="true"
+      [rows]="assignedrows"
+      [totalRecords]="assignedTotalRecords"
+      [loading]="loading"
+      [showLoader]="false"
+      [globalFilterFields]="['search']"
+      >
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="userName">{{ "Equipment.UserName" | translate }}<p-sortIcon field="userName"></p-sortIcon></th>
+          <th pSortableColumn="itemCode">{{ "Equipment.ItemCode" | translate }}<p-sortIcon field="itemCode"></p-sortIcon></th>
+          <th pSortableColumn="itemName">{{ "Equipment.ItemName" | translate }}<p-sortIcon field="itemName"></p-sortIcon></th>
+          <th pSortableColumn="categoryName">{{ "Equipment.CategoryName" | translate }}<p-sortIcon field="categoryName"></p-sortIcon></th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-equipmentUnit>
+        <tr>
+          <td>{{equipmentUnit.userName}}</td>
+          <td>{{equipmentUnit.itemCode}}</td>
+        <td>{{equipmentUnit.itemName}}</td>
+        <td>{{equipmentUnit.categoryName}}</td>
+        <td>
+          <button pButton (click)="unassignItemFromUser(equipmentUnit.id,selectedUser?selectedUser!.id:undefined)" class="btn btn-success">{{'Equipment.UnassignEquipment' | translate}}</button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  </div>
+ </div>
+</div>

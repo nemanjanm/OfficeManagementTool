@@ -1,0 +1,39 @@
+@import "primeicons/primeicons.css";
+@import 'src/variables';
+
+.form-group {
+    margin-bottom: 2%;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    color: $red;
+    font-size: 13px;
+}
+
+.form-control {
+    width: 250px;
+}
+
+.input-field {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+
+.feedback {
+    width: 250px;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+.label-holder {
+    width: 250px;
+    font-size: 12px;
+    color: var(--primary-color);
+    font-weight: bold;
+}

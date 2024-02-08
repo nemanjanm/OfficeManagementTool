@@ -1,0 +1,19 @@
+<form [formGroup]="categoryForm" (ngSubmit)="onSaveCategory()">
+  <div>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input pInputText type="text" id="name" class="form-control" formControlName="name">
+      <div *ngIf="categoryForm.controls['name'].invalid && categoryForm.controls['name'].touched" class="invalid-feedback">Name is required.</div>
+    </div>
+  <br>
+  <div class="form-group">
+    <label for="category">Category type</label><br>
+    <p-dropdown styleClass="w-100" appendTo="body" optionValue="value" formControlName="categoryType" [(ngModel)]="categoryType" [options]="categoryTypes" optionLabel="label"></p-dropdown>
+</div> 
+</div>
+  <br>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" [disabled]="categoryForm.invalid">{{ isUpdate ? 'Update' : 'Add' }}</button>&nbsp;
+      <button type="button" class="btn btn-secondary" (click)="onCancelCategoryForm()">Cancel</button>
+    </div>
+  </form>

@@ -1,0 +1,46 @@
+@import "src/_variables.scss";
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+  
+th,td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.buttons {
+  width: 270px;
+}
+
+button {
+  margin-right: 5px;
+}
+
+:host ::ng-deep {
+  .p-datatable {
+    background-color: var(--white) !important;
+    color: var(--black) !important;
+    border: 2px solid var(--primary-color) !important;
+    width: 800px;
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .p-button p-button-text {
+    color: var(--white) !important;
+  }
+
+  .search-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .content {
+    max-width: 800px;
+  }
+  
+  .btn {
+    background-color: var(--primary-color);
+  }
+}

@@ -1,0 +1,68 @@
+<div class="d-flex justify-content-center align-items-center" style="margin-top: 0.5%; height: 100%; width: 100%;">
+    <div [ngBusy]="officeLoadingSubscription"></div>
+    <div class="content">
+        <h2>{{ "User.UserAdmin" | translate }}</h2>
+        <p-table
+        [value]="users"
+        [lazy]="true"
+        (onLazyLoad)="loadUsersPage($event)"
+        dataKey="id"
+        [tableStyle]="{ 'min-width': '75rem' }"
+        [paginator]="true"
+        [rows]="rows"
+        [totalRecords]="totalRecords"
+        [globalFilterFields]="['search']"
+        >
+            <ng-template pTemplate="header">
+                <tr style="border: 0px;">
+                    <th colspan="7" style="padding: 1%;">
+                        <div style="width: 100%; display: flex; justify-content: space-between;">
+                            <div style="display: flex; align-items: center; justify-content: start;">
+                                <button pButton (click)="addUser()" class="btn btn-success"><i class="pi pi-user-plus">&nbsp;</i>{{'Common.Add' | translate}}</button>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: end;" [ngStyle]="{'margin-right': screenWidth >= 1800 ? '1.5%' : '1%'}">
+                                <div class="input-filed">
+                                    <i class="pi pi-search" style="font-size: 1rem"></i>&nbsp;
+                                    <input pInputText id="searchAdminFilter" name="searchAdminFilter" type="text" placeholder="{{'Common.Search' | translate}}..." (keyup)="loadUsersOnSearchEvent(searchAdminFilter.value)" #searchAdminFilter>
+                                </div>
+                            </div>
+                        </div>
+                    </th>
+                </tr>
+                <tr>
+                    <th pSortableColumn="lastName">{{ "User.LastName" | translate }}<p-sortIcon field="lastName"></p-sortIcon></th>
+                    <th pSortableColumn="firstName">{{ "User.FirstName" | translate }}<p-sortIcon field="firstName"></p-sortIcon></th>
+                    <th pSortableColumn="email">E-mail <p-sortIcon field="email"></p-sortIcon></th>
+                    <th>{{'User.Role' | translate}}</th>
+                    <th>{{'Common.Office' | translate}}</th>
+                    <th style="text-align: center;">{{'Common.Options' | translate}}</th>
+                    <th style="text-align: center;">{{'User.ChangePassword' | translate}}</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-user>
+                <tr>
+                    <td class="td-padd">{{ user.lastName }}</td>
+                    <td class="td-padd">{{ user.firstName }}</td>
+                    <td class="td-padd">{{ user.email }}</td>
+                    <td class="td-padd">{{'Common.' + roles[user.role].label | translate}}</td>
+                    <td class="td-padd">{{user.office.name}}</td>
+                    <td style="width: 20%;" class="td-padd">
+                        <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+                            <button pButton (click)="editUser(user)" class="btn btn-success"><i class="pi pi-user-edit">&nbsp;</i>{{'Common.Edit' | translate}}</button>
+                            <button pButton (click)="deleteUser(user)" class="btn btn-danger" [style]="{'background':'rgb(233, 44, 44)', 'border':'rgb(233, 44, 44)'}">
+                                <i class="pi pi-trash">&nbsp;</i>{{'Common.Delete' | translate}}
+                            </button>
+                        </div>
+                    </td>
+                    <td class="td-padd">
+                        <div style="display: flex; justify-content: center; align-items: center;">
+                            <button pButton (click)="requestPasswordChange(user)" class="btn btn-danger" [style]="{'background':'rgb(228, 180, 90)', 'border':'rgb(228, 180, 90)'}">
+                                <i class="pi pi-send">&nbsp;</i>{{'User.Request' | translate}}
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

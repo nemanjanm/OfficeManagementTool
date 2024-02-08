@@ -1,0 +1,67 @@
+<div [ngBusy]="orderLoadingSubscription"></div>
+<div>
+<div class="d-flex justify-content-center align-items-center">
+    <div class="content">
+      <div class="d-flex mt-5">
+        <button pButton (click)="Back()" class="btn btn-secondary"><i class="pi pi-chevron-left">&nbsp;</i></button>
+        <div class="d-flex flex-column ms-3">
+          <h3 class="my-0">{{ "Order.Item" | translate}}</h3>
+          <h6 class="my-0">{{"Order.OrderStatus" | translate}} {{ states[stateId].label }}</h6>
+        </div>
+      </div>
+    <br>
+    <p-table 
+      [value]="orderItemResponse"
+      [lazy]="true"
+      styleClass="mt-0">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>{{"Order.ItemName" | translate}}</th>
+          <th>{{"Order.Amount" | translate}}</th>
+          <th class="buttons" ></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-orderItem>
+        <tr>
+          <td>{{ orderItem.itemName }}</td>
+          <td>{{ orderItem.amount}}</td>
+          <td class="buttons">
+            <button pButton (click)="updateOrderItem(orderItem)" class="btn btn-success"><i class="pi pi-user-edit">&nbsp;</i>{{'Common.Edit' | translate}}</button>
+            <button pButton class="btn btn-danger" (click)="deleteOrderItem(orderItem.id)" [style]="{'background':'rgb(233, 44, 44)', 'border':'rgb(233, 44, 44)'}">
+              <i class="pi pi-trash">&nbsp;</i>{{'Common.Delete' | translate}}
+          </button>
+        </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <h3>{{"Order.Attachments" | translate}}</h3>
+    <p-fileUpload mode="basic" chooseLabel="Add Attachment" (onSelect)="onUpload($event)"></p-fileUpload>
+    <p-table 
+      [value]="attachmentResponse"
+      [lazy]="true"
+      styleClass="mt-2">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>{{"Order.FileName" | translate}}</th>
+          <th>{{ "Order.DateCreated" | translate }}</th>
+          <th class="buttons" ></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-attachment>
+        <tr>
+          <td>{{ attachment.name }}</td>
+          <td>{{ attachment.dateCreated | date}}</td>
+          <td class="buttons">
+            <button pButton class="btn btn-danger" (click)="downloadAttachment(attachment)" [style]="{'background':'rgb(49, 81, 219)', 'border':'rgb(49, 81, 219)'}">
+              <i class="pi pi-download">&nbsp;</i> {{"Order.Download" | translate}}
+          </button>
+            <button pButton class="btn btn-danger" (click)="deleteAttachment(attachment.id)" [style]="{'background':'rgb(233, 44, 44)', 'border':'rgb(233, 44, 44)'}">
+              <i class="pi pi-trash">&nbsp;</i>{{'Common.Delete' | translate}}
+          </button>
+        </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    </div>
+    </div>
+  </div>

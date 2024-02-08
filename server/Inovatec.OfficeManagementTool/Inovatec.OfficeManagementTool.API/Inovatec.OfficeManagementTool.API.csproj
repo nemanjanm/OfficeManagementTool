@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Serilog" Version="3.0.1" />
+    <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="6.3.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Inovatec.OfficeManagementTool.Common\Inovatec.OfficeManagementTool.Common.csproj" />
+    <ProjectReference Include="..\Inovatec.OfficeManagementTool.InterfacesBL\Inovatec.OfficeManagementTool.InterfacesBL.csproj" />
+    <ProjectReference Include="..\Inovatec.OfficeManagementTool.Localization\Inovatec.OfficeManagementTool.Localization.csproj" />
+    <ProjectReference Include="..\Inovatec.OfficeManagementTool.Models\Inovatec.OfficeManagementTool.Models.csproj" />
+    <ProjectReference Include="..\Inovatec.OfficeManagementTool.ServiceInitializer\Inovatec.OfficeManagementTool.ServiceInitializer.csproj" />
+    <ProjectReference Include="..\Inovatec.OfficeManagementTool.SignalR\Inovatec.OfficeManagementTool.SignalR.csproj" />
+  </ItemGroup>
+
+</Project>

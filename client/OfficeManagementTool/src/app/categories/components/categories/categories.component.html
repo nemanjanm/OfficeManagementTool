@@ -1,0 +1,46 @@
+<p-confirmDialog>
+  (officesChanged)="updateOffices($event)"
+</p-confirmDialog>
+<p-toast></p-toast>
+<div [ngBusy]="categoryLoadingSubscription"></div>
+<br>
+<div class="d-flex justify-content-center align-items-center">
+    <div class="content">
+    <h2>Categories</h2>
+    <br>
+    <div class="search-container">
+      <div>
+      <input pInputText type="text" [(ngModel)]="searchTerm" (ngModelChange)="loadCategories(lastLazyLoadEvent)" placeholder="Search categories"> &nbsp;
+      <p-dropdown appendTo="body" [(ngModel)]="categoryType" placeholder="Category Type" (onChange)="loadCategoriesByType($event)" optionValue="value" formControlName="categoryType"  [options]="categoryTypes" optionLabel="label"></p-dropdown>
+      </div>
+      <button pButton (click)="addCategory()" class="btn btn-primary">Add Category</button>
+    </div>
+    <p-table 
+      [value]="categories"  
+      [customSort]="true"
+      (onLazyLoad)="loadCategories($event)"
+      [lazy]="true"
+      [totalRecords]="totalRecords"
+      [rows]="rows"
+      [paginator]="true" 
+      styleClass="mt-2">
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+          <th pSortableColumn="category_type">Category type<p-sortIcon field="category_type"></p-sortIcon></th>
+          <th class="buttons" ></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-category>
+        <tr>
+          <td>{{ category.name }}</td>
+          <td>{{ categoryTypes[category.categoryType].label }}</td>
+          <td class="buttons">
+            <button pButton (click)="updateCategory(category)" class="btn btn-secondary">Update</button>
+            <button pButton (click)="deleteCategory(category)" class="btn btn-danger" [style]="{'background':'rgb(233, 44, 44)', 'border':'rgb(233, 44, 44)'}">Delete</button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    </div>
+    </div>

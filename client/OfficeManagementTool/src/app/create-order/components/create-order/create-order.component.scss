@@ -1,0 +1,11 @@
+@import "primeicons/primeicons.css";
+@import 'src/variables';
+
+.p-button-link {
+    border: 0;
+    background-color: white;
+    color: var(--black);
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: bold;
+}

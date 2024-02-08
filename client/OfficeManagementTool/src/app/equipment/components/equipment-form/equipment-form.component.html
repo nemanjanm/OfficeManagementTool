@@ -1,0 +1,14 @@
+<form class="w-100 d-flex flex-column align-items-stretch gap-3 pt-4 px-2" (ngSubmit)="saveEquipment()" [formGroup]="equipmentForm">
+  <div class="w-100">
+    <input pInputText class="w-100" type="text" id="itemCode" name ="itemCode" formControlName="itemCode" placeholder="e.g. INOVATEC-INO-4589X" required>
+    <small *ngIf="equipmentForm.controls['itemCode'].invalid && equipmentForm.controls['itemCode'].touched" class="p-error">{{ 'Equipment.ItemCodeRequired' | translate }}</small>
+  </div>
+  <div class="w-100">
+      <p-dropdown styleClass="w-100" formControlName="itemId" class="form-control-p-dropdown" [options]="items" [filter]="true" filterBy="name" optionLabel="name" optionValue="id" appendTo="body" placeholder="{{ 'Equipment.Items' | translate }}"></p-dropdown>
+    <small *ngIf="equipmentForm.controls['itemId'].invalid && equipmentForm.controls['itemId'].touched" class="p-error">{{ 'Equipment.ChooseItem' | translate }}</small>
+  </div>
+  <div class="w-100 d-flex align-items-center justify-content-between mt-3">
+    <button pButton type="button" class="p-button-secondary p-button-sm" (click)="cancel()">{{ 'Common.Cancel' | translate }}</button>
+    <button pButton type="submit" class="p-button-sm" [disabled]="equipmentForm.invalid">{{ 'Common.Add' | translate }}</button>
+  </div>
+</form>

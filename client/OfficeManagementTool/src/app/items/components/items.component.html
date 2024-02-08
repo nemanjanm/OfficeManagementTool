@@ -1,0 +1,47 @@
+
+  <div [ngBusy]="itemLoadingSubscription"></div>
+  <br>
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="content">
+      <h2>{{'Common.'+categoryTypes[categoryType].label | translate}}</h2>
+      <br>
+      <div class="search-container">
+        <div>
+        <input pInputText type="text" [(ngModel)]="searchTerm" (ngModelChange)="loadItems(lastLazyLoadEvent)" placeholder="{{'Items.SearchItems' | translate}}..."> &nbsp;
+        <p-dropdown appendTo="body" [(ngModel)]="categoryName" placeholder="{{'Items.CategoryName' | translate}}" (onChange)="loadItemsCategoriesByType($event)" optionValue="id"  [options]="categories" optionLabel="name"></p-dropdown>
+        </div>
+        <button pButton (click)="addItem()" class="btn btn-primary"><i class="pi pi-plus">&nbsp;</i>{{'Items.AddItem' | translate}}</button>
+      </div>
+      <p-table 
+        [value]="items"
+        [customSort]="true"
+        (onLazyLoad)="loadItems($event)"
+        [lazy]="true"
+        [totalRecords]="totalRecords"
+        [rows]="rows"
+        [paginator]="true" 
+        styleClass="mt-2">
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="name">{{'Items.Name' | translate}}<p-sortIcon field="name"></p-sortIcon></th>
+            <th pSortableColumn="category_name">{{'Items.CategoryName' | translate}}<p-sortIcon field="category_name"></p-sortIcon></th>
+            <th class="buttons" style="text-align: center;">{{'Common.Options' | translate}}</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+          <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.categoryName}}</td>
+            <td class="buttons">
+              <div style="display: flex; justify-content: center; align-items: center;">
+                <button pButton (click)="updateItem(item)" class="btn btn-secondary"><i class="pi pi-pencil">&nbsp;</i>{{'Common.Update' | translate}}</button>
+                <button pButton (click)="deleteItem(item)" class="btn btn-danger" [style]="{'background':'rgb(233, 44, 44)', 'border':'rgb(233, 44, 44)'}">
+                  <i class="pi pi-trash">&nbsp;</i>{{'Common.Delete' | translate}}
+                </button>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>

@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.20" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Inovatec.OfficeManagementTool.Common\Inovatec.OfficeManagementTool.Common.csproj" />
+    <ProjectReference Include="..\Inovatec.OfficeManagementTool.InterfacesBL\Inovatec.OfficeManagementTool.InterfacesBL.csproj" />
+    <ProjectReference Include="..\Inovatec.OfficeManagementTool.InterfacesDAL\Inovatec.OfficeManagementTool.InterfacesDAL.csproj" />
+    <ProjectReference Include="..\Inovatec.OfficeManagementTool.Models\Inovatec.OfficeManagementTool.Models.csproj" />
+    <ProjectReference Include="..\Inovatec.OfficeManagementTool.SignalR\Inovatec.OfficeManagementTool.SignalR.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,10 @@
+<p-menubar class="custom-menubar" [model]="items">
+    <ng-template pTemplate="start">
+        <img style="width:60px" src="assets/images/logo.png">
+    </ng-template>
+    <ng-template pTemplate="end">
+        <app-translate></app-translate>&nbsp;&nbsp;
+        <p-menuitem *ngIf="checkLogin()" [routerLink]="['/']" label="Log out"><p-button styleClass="p-button-raised" (click)="logout()">{{'Common.LogOut' | translate}}</p-button></p-menuitem>
+        <p-menuitem *ngIf="!checkLogin()" [routerLink]="['/login']" label="Login" ><p-button styleClass="p-button-raised">Login</p-button></p-menuitem>
+    </ng-template>
+</p-menubar>

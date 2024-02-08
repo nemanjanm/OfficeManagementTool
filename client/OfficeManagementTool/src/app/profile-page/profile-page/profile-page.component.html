@@ -1,0 +1,15 @@
+<p-card styleClass="change-password-card mx-auto mt-5">
+    <h2 class="text-center mb-4">{{"User.ProfilePage" | translate}}</h2>
+    <form class="w-100 d-flex flex-column align-items-stretch gap-3" [formGroup]="nameForm" (ngSubmit)="send()">
+        <div class="form-group">
+            <label for="fisrtname">{{"User.FirstName" | translate}}</label>
+            <input [ngModel]="user!.firstName" pInputText type="text" id="firstname" class="form-control" formControlName="firstname">
+            <div *ngIf="nameForm.controls['firstname'].invalid && nameForm.controls['firstname'].touched" class="invalid-feedback">Firstname is required.</div><br>
+            <label for="lastname">{{"User.LastName" | translate}}</label>
+            <input [ngModel]="user!.lastName" pInputText type="text" id="lastname" class="form-control" formControlName="lastname">
+            <div *ngIf="nameForm.controls['lastname'].invalid && nameForm.controls['lastname'].touched" class="invalid-feedback">Lastname is required.</div><br>
+          </div>
+        <button pButton type="submit" class="btn btn-success" [disabled]="nameForm.invalid">{{"Common.Save" | translate}}</button>
+    </form><br><br>
+    <a [routerLink]="['/new-password']">{{"User.ChangePassword" | translate}}</a>
+</p-card>

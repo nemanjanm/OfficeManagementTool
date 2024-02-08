@@ -1,0 +1,177 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\Cart\sr-CA.Designer.cs">
+      <DependentUpon>sr-CA.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Resources\Cart\en-CA.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>en-CA.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Common\en-CA.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>en-CA.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Common\sr-CA.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>sr-CA.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Exceptions\en-CA.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>en-CA.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Exceptions\sr-CA.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>sr-CA.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Items\en-CA.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>en-CA.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Items\sr-CA.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>sr-CA.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Equipment\en-CA.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>en-CA.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Equipment\sr-CA.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>sr-CA.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Offices\en-CA.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>en-CA.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Offices\sr-CA.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>sr-CA.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Order\en-CA.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>en-CA.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Order\sr-CA.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>sr-CA.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Reports\sr-CA.Designer.cs">
+      <DependentUpon>sr-CA.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Resources\Reports\en-CA.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>en-CA.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\User\en-CA.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>en-CA.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\User\sr-CA.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>sr-CA.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Cart\sr-CA.resx">
+      <LastGenOutput>sr-CA.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Cart\en-CA.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>en-CA.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Common\en-CA.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>en-CA.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Common\sr-CA.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>sr-CA.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Exceptions\en-CA.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>en-CA.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Exceptions\sr-CA.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>sr-CA.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Items\en-CA.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>en-CA.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Items\sr-CA.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>sr-CA.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Equipment\en-CA.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>en-CA.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Equipment\sr-CA.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>sr-CA.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Offices\en-CA.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>en-CA.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Offices\sr-CA.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>sr-CA.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Order\en-CA.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>en-CA.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Order\sr-CA.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>sr-CA.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Reports\sr-CA.resx">
+      <LastGenOutput>sr-CA.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Reports\en-CA.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>en-CA.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\User\en-CA.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>en-CA.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\User\sr-CA.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>sr-CA.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

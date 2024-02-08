@@ -1,0 +1,18 @@
+.flex-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+.container-fluid {
+    margin-right: auto;
+    margin-left: auto;
+    width: 50vw;
+    max-height: 300px;
+  }
+
+.err {
+    color: red;
+}
+.dropdown {
+    min-width: 1000px;
+}
